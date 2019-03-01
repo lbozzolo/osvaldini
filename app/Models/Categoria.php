@@ -49,7 +49,7 @@ class Categoria extends Model
 
     public function productos()
     {
-        return $this->morphedByMany('App\Models\Producto', 'categoriable');
+        return $this->belongsToMany('App\Models\Producto', 'categorias_productos');
     }
 
     

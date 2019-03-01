@@ -76,7 +76,7 @@ Route::group(['prefix' => 'web'], function () {
 
     Route::post('newsletter', [
         'as' => 'web.suscribe.newsletter',
-        'uses' => 'NewsletterController@suscribe'
+        'uses' => 'MarcaController@suscribe'
     ]);
 
     Route::get('/home', 'WebController@index');

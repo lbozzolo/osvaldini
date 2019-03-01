@@ -14,17 +14,21 @@ Route::get('field_template', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuil
 Route::post('generator_builder/generate', '\InfyOm\GeneratorBuilder\Controllers\GeneratorBuilderController@generate');
 
 
-Route::resource('farmacias', 'FarmaciaController');
+Route::resource('nosotros', 'NosotrosController');
 
 Route::resource('users', 'UserController');
 
-Route::resource('servicios', 'ServicioController');
+Route::resource('laboratorios', 'LaboratorioController');
 
 Route::resource('productos', 'ProductoController');
 
 Route::resource('images', 'ImageController');
 
-Route::resource('newsletter', 'NewsletterController');
+Route::resource('marcas', 'MarcaController');
+
+Route::resource('categorias', 'CategoriaController');
+
+Route::resource('sliders', 'SliderController');
 
 Route::get('imagenes/{file}', [
     'as' => 'imagenes.ver',
@@ -46,13 +50,13 @@ Route::get('imagenes/{id}/{class}/{imagen}/principal', [
     'uses' => 'ImageController@principalImage',
 ]);
 
-Route::resource('categorias', 'CategoriaController');
-
-Route::resource('categoriables', 'CategoriableController');
-
-Route::resource('sliders', 'SliderController');
-
 Route::get('sliders/{id}/activate', [
     'as' => 'sliders.activate',
     'uses' => 'SliderController@activate'
+]);
+
+// Ver PDF
+Route::get('ver-pdf/{file}', [
+    'as' => 'admin.ver.pdf',
+    'uses' => 'ProductoController@verPdf'
 ]);

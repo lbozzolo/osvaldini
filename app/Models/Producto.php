@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use Eloquent as Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Class Producto
@@ -15,8 +14,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  */
 class Producto extends Model
 {
-    use SoftDeletes;
-
     public $table = 'productos';
     
 
@@ -24,7 +21,7 @@ class Producto extends Model
 
 
     public $fillable = [
-        'name', 'description', 'code', 'price', 'highlight'
+        'name', 'description', 'principio_activo', 'presentacion', 'caracteristicas', 'laboratorio_id', 'pdf_file', 'code', 'price', 'highlight'
     ];
 
     /**
@@ -34,7 +31,7 @@ class Producto extends Model
      */
     protected $casts = [
         'name' => 'string',
-        'code' => 'string'
+        'code' => 'string',
     ];
 
     /**
@@ -45,6 +42,9 @@ class Producto extends Model
     public static $rules = [
         'name' => 'required|max:255',
         'description' => 'max:1500',
+        'principio_activo' => 'max:255',
+        'presentacion' => 'max:255',
+        'caracteristicas' => 'max:255',
         'code' => 'required',
         'price' => '',
         'categorias' => 'min:1',
@@ -80,7 +80,12 @@ class Producto extends Model
 
     public function categorias()
     {
-        return $this->morphToMany('App\Models\Categoria', 'categoriable');
+        return $this->belongsToMany('App\Models\Categoria', 'categorias_productos');
+    }
+
+    public function laboratorio()
+    {
+        return $this->belongsTo(Laboratorio::class);
     }
 
     

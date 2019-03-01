@@ -28,7 +28,7 @@ class WebController extends AppBaseController
 
     public function farmacia()
     {
-        $data['farmacias'] = Farmacia::where('active', '==', 1)->first();
+        $data['nosotros'] = Farmacia::where('active', '==', 1)->first();
         return view('web.farmacia')->with($data);
     }
 

@@ -1,31 +1,33 @@
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Los medicamentos que suministramos en nuestra farmacia son de excelente calidad y a los mejores precios. Visítenos en Farmacia Osvaldini. ¡Visítenos en Pinamar!">
+    <meta charset="UTF-8" />
+    <title>El Fortin Agropecuaria - Cardales</title>
+    <!-- <link href="image/favicon.png" rel="icon" />-->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="insumos agropecuarios, agroquimicos, herbicidas, insecticidas, fertilizante plantas, funguicidas, panes de césped, semillas, mamboretá, gleba, glifosato, cipermetrina, roundup, clorpirifos, clap, glextrin, ddvp, clorfox, togar, veneno hormigas, veneno ratas, pesticidas, plaguicidas, insumos fumigaciones, veneno plagas, productos para el jardin vivero huerta campo, tierra para plantas">
     <meta name="author" content="Verticedigital.com.ar">
-    <title>Farmacia Osvaldini - Medicamentos en Pinamar con Farmacia Osvaldini</title>
+    <!-- CSS Part Start-->
+    <link rel="stylesheet" type="text/css" href="{{ asset('template-web/css/stylesheet.css') }}" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('template-web/css/slideshow.css') }}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('template-web/css/flexslider.css') }}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('template-web/js/colorbox/colorbox.css') }}" media="screen" />
+    <link rel="stylesheet" type="text/css" href="{{ asset('template-web/css/carousel.css') }}" media="screen" />
+    <!-- CSS Part End-->
+    <!-- JS Part Start-->
+    <script type="text/javascript" src="{{ asset('template-web/js/jquery-1.7.1.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('template-web/js/jquery.nivo.slider.pack.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('template-web/js/jquery.flexslider.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('template-web/js/jquery.easing-1.3.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('template-web/js/jquery.jcarousel.min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('template-web/js/colorbox/jquery.colorbox-min.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('template-web/js/tabs.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('template-web/js/cloud_zoom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('template-web/js/jquery.dcjqaccordion.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('template-web/js/custom.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('template-web/js/html5.js') }}"></script>
+    <!-- JS Part End-->
 
-    <!-- Favicons-->
-    <link rel="shortcut icon" href="{{ asset('template-web/assets/img/favicon.ico') }}" type="image/x-icon">
-    <link rel="apple-touch-icon" type="image/x-icon" href="{{ asset('template-web/assets/img/apple-touch-icon-57x57-precomposed.png') }}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="72x72" href="{{ asset('template-web/assets/img/apple-touch-icon-72x72-precomposed.png') }}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="114x114" href="{{ asset('template-web/assets/img/apple-touch-icon-114x114-precomposed.png') }}">
-    <link rel="apple-touch-icon" type="image/x-icon" sizes="144x144" href="{{ asset('template-web/assets/img/apple-touch-icon-144x144-precomposed.png') }}">
-
-    <!-- BASE CSS -->
-    <link href="{{ asset('template-web/assets/css/animate.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('template-web/assets/css/bootstrap.min.css') }}" rel="stylesheet">
-    <link href="{{ asset('template-web/assets/css/style.css') }}" rel="stylesheet">
-    <link href="{{ asset('template-web/assets/css/icon_fonts/css/all_icons_min.css') }}" rel="stylesheet">
-
-    <!-- YOUR CUSTOM CSS -->
-    <link href="{{ asset('template-web/assets/css/custom.css') }}" rel="stylesheet">
-
-    <!-- LayerSlider stylesheet -->
-    <link href="{{ asset('template-web/assets/layerslider/css/layerslider.css') }}" rel="stylesheet">
-
-    @yield('css')
+    {{--<link href='//fonts.googleapis.com/css?family=Droid+Sans&v1' rel='stylesheet' type='text/css'>--}}
+    {{--<link href='//fonts.googleapis.com/css?family=&v1' rel='stylesheet' type='text/css'>--}}
 
 </head>

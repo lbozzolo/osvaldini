@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>Admin - Osvaldini</title>
+    <title>Admin - El Fortín</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
 
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -52,15 +52,14 @@
                         <!-- Menu Toggle Button -->
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                             <!-- The user image in the navbar-->
-                            <img src="{{ asset('imagenes/logos/osvaldini_logo.png') }}"
-                                 class="user-image" alt="User Image"/>
+
                             <!-- hidden-xs hides the username on small devices so only the image appears. -->
                             <span class="hidden-xs">{!! (Auth::check())? Auth::user()->name : '' !!}</span>
                         </a>
                         <ul class="dropdown-menu">
                             <!-- The user image in the menu -->
                             <li class="user-header">
-                                <img src="{{ asset('imagenes/logos/osvaldini_logo.png') }}"
+                                <img src="{{ asset('template-web/image/logo.jpg') }}"
                                      class="img-circle" alt="User Image"/>
                                 <p>
                                     {!! (Auth::check())? Auth::user()->name : '' !!}

@@ -10,10 +10,35 @@
     {!! Form::text('description', null, ['class' => 'form-control']) !!}
 </div>
 
+<div class="form-group col-lg-12">
+    {!! Form::label('principio_activo', 'Principio activo:') !!}
+    {!! Form::text('principio_activo', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-lg-12">
+    {!! Form::label('presentacion', 'Presentación:') !!}
+    {!! Form::text('presentacion', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-lg-12">
+    {!! Form::label('caracteristicas', 'Características:') !!}
+    {!! Form::text('caracteristicas', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-lg-12">
+    {!! Form::label('laboratorio_id', 'Laboratorio:') !!}
+    {!! Form::select('laboratorio_id', $laboratorios, null, ['class' => 'form-control']) !!}
+</div>
+
 <!-- Code Field -->
 <div class="form-group col-lg-12">
     {!! Form::label('code', 'Código:') !!}
     {!! Form::text('code', null, ['class' => 'form-control']) !!}
+</div>
+
+<div class="form-group col-lg-12">
+    {!! Form::label('pdf_file', 'Archivo PDF') !!}
+    {!! Form::file('pdf_file', ['class' => 'form-control']) !!}
 </div>
 
 <!-- Price Field -->

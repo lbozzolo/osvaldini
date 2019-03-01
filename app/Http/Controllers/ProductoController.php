@@ -6,17 +6,19 @@ use App\Http\Requests\CreateProductoRequest;
 use App\Http\Requests\UpdateProductoRequest;
 use App\Models\Color;
 use App\Models\Categoria;
+use App\Models\Laboratorio;
 use App\Models\Producto;
 use App\Repositories\ProductoRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 
 class ProductoController extends AppBaseController
 {
-    /** @var  ProductoRepository */
     private $productoRepository;
 
     public function __construct(ProductoRepository $productoRepo)
@@ -24,12 +26,6 @@ class ProductoController extends AppBaseController
         $this->productoRepository = $productoRepo;
     }
 
-    /**
-     * Display a listing of the Producto.
-     *
-     * @param Request $request
-     * @return Response
-     */
     public function index(Request $request)
     {
         $this->productoRepository->pushCriteria(new RequestCriteria($request));
@@ -38,53 +34,36 @@ class ProductoController extends AppBaseController
         return view('productos.index')->with($data);
     }
 
-    /**
-     * Show the form for creating a new Producto.
-     *
-     * @return Response
-     */
     public function create()
     {
         $data['categorias'] = Categoria::all()->pluck('name', 'id');
+        $data['laboratorios'] = Laboratorio::all()->pluck('name', 'id');
+
         return view('productos.create')->with($data);
     }
 
-    /**
-     * Store a newly created Producto in storage.
-     *
-     * @param CreateProductoRequest $request
-     *
-     * @return Response
-     */
     public function store(CreateProductoRequest $request)
     {
         $input = $request->all();
 
+        $input['categorias'] = array_filter($input['categorias'], function($cat) {
+            return !is_null($cat);
+        });
+
         $producto = $this->productoRepository->create($input);
 
-//        $categorias = array_where($input['categorias'], function ($key, $value) {
-//            return $value;
-//        });
+        if($request->file('pdf_file')){
+            $file = $request->file('pdf_file');
+            $nombre = $file->getClientOriginalName();
+            Storage::disk('local')->put($nombre,  File::get($file));
 
-        //dd($input['categorias']);
-
-        foreach($input['categorias'] as $key => $value){
-            $categoria = Categoria::find($value);
-            if($categoria)
-                $producto->categorias()->attach($categoria);
+            $producto->pdf_file = $nombre;
+            $producto->save();
         }
-
 
         return redirect(route('productos.index'))->with('ok', 'Producto creado con éxito');
     }
 
-    /**
-     * Display the specified Producto.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function show($id)
     {
         $producto = $this->productoRepository->findWithoutFail($id);
@@ -95,17 +74,11 @@ class ProductoController extends AppBaseController
         return view('productos.show')->with('producto', $producto);
     }
 
-    /**
-     * Show the form for editing the specified Producto.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function edit($id)
     {
         $data['producto'] = $this->productoRepository->findWithoutFail($id);
         $data['categorias'] = Categoria::all()->pluck('name', 'id');
+        $data['laboratorios'] = Laboratorio::all()->pluck('name', 'id');
 
         if (empty($data['producto']))
             return redirect(route('productos.index'))->withErrors('Producto no encontrado');
@@ -113,14 +86,6 @@ class ProductoController extends AppBaseController
         return view('productos.edit')->with($data);
     }
 
-    /**
-     * Update the specified Producto in storage.
-     *
-     * @param  int              $id
-     * @param UpdateProductoRequest $request
-     *
-     * @return Response
-     */
     public function update($id, UpdateProductoRequest $request)
     {
         $producto = $this->productoRepository->findWithoutFail($id);
@@ -138,13 +103,6 @@ class ProductoController extends AppBaseController
         return redirect(route('productos.index'))->with('ok', 'Producto actualizado con éxito');
     }
 
-    /**
-     * Remove the specified Producto from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function destroy($id)
     {
         $producto = $this->productoRepository->findWithoutFail($id);
@@ -156,4 +114,11 @@ class ProductoController extends AppBaseController
 
         return redirect(route('productos.index'))->with('ok', 'Producto eliminado con éxito');
     }
+
+    public function verPdf($file)
+    {
+        return response()->make(\Illuminate\Support\Facades\File::get(storage_path("app/".$file)),200)
+            ->header('Content-Type', 'application/pdf');
+    }
+
 }

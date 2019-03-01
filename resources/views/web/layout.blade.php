@@ -1,27 +1,39 @@
 <!DOCTYPE html>
+<html dir="ltr" lang="en">
+<head>
 
     @include('web.partials.head')
+    @yield('css')
 
-<body class="header-fixed page no-sidebar header-style-1 topbar-style-1 menu-has-search">
+</head>
+<body>
+    <div class="wrapper-box">
+        <div class="main-wrapper">
 
+            <header id="header">
 
-    <div id="preloader">
-        <div data-loader="circle-side"></div>
-    </div><!-- /Preload -->
+                @include('web.partials.header')
 
-    <div class="layer"></div>
-    <!-- /Overlay mask -->
+            </header>
+            <div id="container">
+                <div id="content">
 
-        @include('web.partials.header')
+                    @yield('content')
 
-        <div style="margin-top: 100px">@include('flash::web-messages')</div>
+                </div>
+                <div class="clear"></div>
+            </div>
 
-        @yield('content')
+        </div>
+        <footer id="footer">
 
-        @include('web.partials.footer')
+            @include('web.partials.footer')
 
-        @include('web.partials.scripts')
+        </footer>
+
+    </div>
+
+    @include('web.partials.scripts')
 
 </body>
 </html>
-

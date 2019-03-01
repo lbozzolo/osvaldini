@@ -18,15 +18,20 @@ class CreateProductosTable extends Migration
 
             $table->increments('id');
             $table->string('name', '255');
-            $table->text('description');
-            $table->string('code');
-            $table->integer('price');
+            $table->string('description')->nullable();
+            $table->string('principio_activo')->nullable();
+            $table->string('presentacion')->nullable();
+            $table->string('pdf_file')->nullable();
+            $table->string('caracteristicas')->nullable();
+            $table->integer('laboratorio_id')->unsigned()->nullable();
+            $table->string('code')->nullable();
+            $table->integer('price')->nullable();
             $table->integer('highlight')->nullable();
 
             $table->index('id');
+            $table->index('laboratorio_id');
 
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 

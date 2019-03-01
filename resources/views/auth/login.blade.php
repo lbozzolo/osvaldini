@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Osvaldini - Panel de control</title>
+    <title>El Fortín - Panel de control</title>
 
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -34,7 +34,7 @@
 <body class="hold-transition login-page">
 <div class="login-box">
     <div class="login-logo">
-        <a href="{{ url('/home') }}"><b>Farmacia Osvaldini </b>Panel de control</a>
+        <a href="{{ url('/home') }}"><b>El Fortín </b><br>Panel de control</a>
     </div>
 
     <!-- /.login-logo -->
@@ -81,7 +81,6 @@
         </form>
 
         <a href="{{ url('/password/reset') }}">Olvidé mi contraseña</a><br>
-        <a href="{{ url('/register') }}" class="text-center">Registrarse como nuevo usuario</a>
 
     </div>
     <!-- /.login-box-body -->
