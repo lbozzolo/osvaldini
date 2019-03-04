@@ -15,10 +15,6 @@ use Eloquent as Model;
 class Producto extends Model
 {
     public $table = 'productos';
-    
-
-    protected $dates = ['deleted_at'];
-
 
     public $fillable = [
         'name', 'description', 'principio_activo', 'presentacion', 'caracteristicas', 'laboratorio_id', 'pdf_file', 'code', 'price', 'highlight'

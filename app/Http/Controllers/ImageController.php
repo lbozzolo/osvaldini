@@ -9,6 +9,8 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Support\Facades\File;
 use Illuminate\Http\Request;
 use Flash;
+use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
 use App\Models\Image;
@@ -212,10 +214,10 @@ class ImageController extends AppBaseController
     public function changeFileNameIfExists($file)
     {
         $nombre = $file->getClientOriginalName();
-        $extension = $file->getClientOriginalExtension();
+        $extension = $file->guessExtension();
 
-        if (file_exists( storage_path("imagenes/".$nombre)))
-            $nombre = preg_replace('/\\.[^.\\s]{3,4}$/', '', $nombre) . '-' . str_random(4) . '.' . $extension;
+        if (file_exists( public_path("imagenes/".$nombre)))
+            $nombre = preg_replace('/\\.[^.\\s]{3,4}$/', '', $nombre) . '-' . str_random(12) . '.' . $extension;
 
         return $nombre;
     }
@@ -235,6 +237,53 @@ class ImageController extends AppBaseController
         $imagen->save();
 
         return redirect()->back();
+    }
+
+    // Croppie
+
+    public function saveJqueryImageUpload(Request $request, $id, $class)
+    {
+        $validator = Validator::make($request->all(), [
+            'img' => 'required|image|max:1024000',
+        ]);
+
+        if ($validator->fails()) {
+            return $validator->errors();
+        }
+
+        $status = "";
+
+        if(!$request->hasFile('img'))
+            return redirect()->back()->withErrors('No ha seleccionado ningún archivo');
+
+        $class = 'App\Models\\'.$class;
+        $model = $class::find($id);
+
+        // Redirección si supera el máximo de fotos permitido
+        if($model->images->count() >= config('imagenes.MAX_NUMBER_IMAGES'))
+            return redirect()->back()->withErrors('El número máximo de fotos permitido es '.config('sistema.imagenes.MAX_NUMBER_IMAGES').'. Elimine una foto y vuelva a intentarlo');
+
+        if($request->file('img')){
+
+            $file = $request->file('img');
+
+            // Redirección si excede el máximo tamaño de imagen permitido
+            if($file->getClientSize() > config('sistema.imagenes.MAX_SIZE_IMAGE'))
+                return redirect()->back()->withErrors('La foto es demasiado grande (Debe ser menor a 2M)');
+
+            // Confirma que el archivo no exista en el destino
+            $nombre = $this->changeFileNameIfExists($file);
+
+            $imagen = Image::create(['path' => $nombre, 'main' => 0]);
+            $imagen->title = ($request->title)? $request->title : '';
+            $file->move(public_path('imagenes'), $nombre);
+            $model->images()->save($imagen);
+
+            $status = "uploaded";
+
+        }
+
+        return response($status,200);
     }
 
 }

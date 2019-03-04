@@ -13,6 +13,7 @@ use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Storage;
 use Prettus\Repository\Criteria\RequestCriteria;
 use Response;
@@ -44,6 +45,7 @@ class ProductoController extends AppBaseController
 
     public function store(CreateProductoRequest $request)
     {
+        //dd(Storage::disk('local'));
         $input = $request->all();
 
         $input['categorias'] = array_filter($input['categorias'], function($cat) {
@@ -110,6 +112,9 @@ class ProductoController extends AppBaseController
         if (empty($producto))
             return redirect(route('productos.index'))->withErrors('Producto no encontrado');
 
+        if($producto->pdf_file)
+            unlink(storage_path('app/'.$producto->pdf_file));
+
         $this->productoRepository->delete($id);
 
         return redirect(route('productos.index'))->with('ok', 'Producto eliminado con éxito');
@@ -117,6 +122,9 @@ class ProductoController extends AppBaseController
 
     public function verPdf($file)
     {
+        if(!file_exists(storage_path('app/'.$file)))
+            return abort(404);
+
         return response()->make(\Illuminate\Support\Facades\File::get(storage_path("app/".$file)),200)
             ->header('Content-Type', 'application/pdf');
     }

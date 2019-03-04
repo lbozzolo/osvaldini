@@ -30,6 +30,9 @@ Route::resource('categorias', 'CategoriaController');
 
 Route::resource('sliders', 'SliderController');
 
+
+//imagenes
+
 Route::get('imagenes/{file}', [
     'as' => 'imagenes.ver',
     'uses' => 'ImageController@verImage'
@@ -48,6 +51,11 @@ Route::post('imagenes/store', [
 Route::get('imagenes/{id}/{class}/{imagen}/principal', [
     'as' => 'images.main',
     'uses' => 'ImageController@principalImage',
+]);
+
+Route::post('/{id}/{class}/demos/jquery-image-upload', [
+    'as' => 'subir.imagen',
+    'uses' => 'ImageController@saveJqueryImageUpload'
 ]);
 
 Route::get('sliders/{id}/activate', [

@@ -15,6 +15,8 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/_all.css">
 
+    <link rel="stylesheet" href="{{ asset('croppie/croppie.css') }}" />
+
     <base href="{{ asset('/') }}">
     <style type="text/css">
 
