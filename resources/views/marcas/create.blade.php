@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Categoría / Agregar
+            Marca / Agregar
         </h1>
     </section>
     <div class="content">
@@ -16,9 +16,9 @@
 
                     <div class="box-body">
                         <div class="row">
-                            {!! Form::open(['route' => 'categorias.store']) !!}
+                            {!! Form::open(['route' => 'marcas.store']) !!}
 
-                            @include('categorias.fields')
+                            @include('marcas.fields')
 
                             {!! Form::close() !!}
                         </div>

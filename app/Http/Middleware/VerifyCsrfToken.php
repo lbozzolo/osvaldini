@@ -17,7 +17,8 @@ class VerifyCsrfToken extends BaseVerifier
 
     protected function isReading($request)
     {
-        return in_array($request->method(), ['HEAD', 'GET', 'OPTIONS', 'POST', 'PATCH', 'DELETE', 'PUT']);
+        return in_array($request->method(), ['GET', 'POST', 'PATCH', 'DELETE', 'PUT']);
+        //return in_array($request->method(), ['HEAD', 'GET', 'OPTIONS', 'POST', 'PATCH', 'DELETE', 'PUT']);
     }
 
 }

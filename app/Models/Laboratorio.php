@@ -39,11 +39,6 @@ class Laboratorio extends Model
         'name' => 'required'
     ];
 
-    public function images()
-    {
-        return $this->morphMany(Image::class, 'imageable');
-    }
-
     public function productos()
     {
         return $this->hasMany(Producto::class);

@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests;
 
+use App\Models\Marca;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Models\Servicio;
 
-class UpdateServicioRequest extends FormRequest
+class CreateMarcaRequest extends FormRequest
 {
 
     /**
@@ -25,6 +25,6 @@ class UpdateServicioRequest extends FormRequest
      */
     public function rules()
     {
-        return Servicio::$rules;
+        return Marca::$rules;
     }
 }

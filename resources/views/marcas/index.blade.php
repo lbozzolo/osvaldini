@@ -2,9 +2,9 @@
 
 @section('content')
     <section class="content-header col-lg-4">
-        <h1 class="pull-left">Categorías</h1>
+        <h1 class="pull-left">Marcas</h1>
         <span class="pull-right">
-           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('categorias.create') !!}">Agregar</a>
+           <a class="btn btn-primary pull-right" style="margin-top: -10px;margin-bottom: 5px" href="{!! route('marcas.create') !!}">Agregar</a>
         </span>
     </section>
     <div class="content">
@@ -18,7 +18,7 @@
             <div class="col-lg-4">
                 <div class="box box-primary">
                     <div class="box-body">
-                        @include('categorias.table')
+                        @include('marcas.table')
                     </div>
                 </div>
             </div>

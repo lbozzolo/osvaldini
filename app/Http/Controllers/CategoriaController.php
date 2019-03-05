@@ -64,23 +64,6 @@ class CategoriaController extends AppBaseController
     }
 
     /**
-     * Display the specified Categoria.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $categoria = $this->categoriaRepository->findWithoutFail($id);
-
-        if (empty($categoria))
-            return redirect(route('categorias.index'))->withErrors('Categoría no encontrada');
-
-        return view('categorias.show')->with('categoria', $categoria);
-    }
-
-    /**
      * Show the form for editing the specified Categoria.
      *
      * @param  int $id

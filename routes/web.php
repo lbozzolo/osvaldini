@@ -74,8 +74,8 @@ Route::group(['prefix' => 'web'], function () {
         'uses' => 'WebController@postContacto'
     ]);
 
-    Route::post('newsletter', [
-        'as' => 'web.suscribe.newsletter',
+    Route::post('marcas', [
+        'as' => 'web.suscribe.marcas',
         'uses' => 'MarcaController@suscribe'
     ]);
 

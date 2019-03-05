@@ -3,7 +3,7 @@
 @section('content')
     <section class="content-header">
         <h1>
-            Categoría / Editar
+            Servicio / Editar
         </h1>
    </section>
    <div class="content">
@@ -14,9 +14,9 @@
 
                <div class="box box-primary">
                    <div class="box-body">
-                       {!! Form::model($categoria, ['route' => ['categorias.update', $categoria->id], 'method' => 'patch']) !!}
+                       {!! Form::model($laboratorio, ['route' => ['laboratorios.update', $laboratorio->id], 'method' => 'patch']) !!}
 
-                       @include('categorias.fields')
+                       @include('laboratorios.fields')
 
                        {!! Form::close() !!}
                    </div>

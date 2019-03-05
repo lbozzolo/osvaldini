@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\CreateServicioRequest;
-use App\Http\Requests\UpdateServicioRequest;
-use App\Repositories\ServicioRepository;
+use App\Http\Requests\CreateLaboratorioRequest;
+use App\Http\Requests\UpdateLaboratorioRequest;
+use App\Repositories\LaboratorioRepository;
 use App\Http\Controllers\AppBaseController;
 use Illuminate\Http\Request;
 use Flash;
@@ -13,124 +13,72 @@ use Response;
 
 class LaboratorioController extends AppBaseController
 {
-    /** @var  ServicioRepository */
-    private $servicioRepository;
+    private $laboratorioRepository;
 
-    public function __construct(ServicioRepository $servicioRepo)
+    public function __construct(LaboratorioRepository $laboratorioRepository)
     {
-        $this->servicioRepository = $servicioRepo;
+        $this->laboratorioRepository = $laboratorioRepository;
     }
 
-    /**
-     * Display a listing of the Servicio.
-     *
-     * @param Request $request
-     * @return Response
-     */
     public function index(Request $request)
     {
-        $this->servicioRepository->pushCriteria(new RequestCriteria($request));
-        $servicios = $this->servicioRepository->all();
+        $this->laboratorioRepository->pushCriteria(new RequestCriteria($request));
+        $laboratorios = $this->laboratorioRepository->all();
 
-        return view('servicios.index')
-            ->with('servicios', $servicios);
+        return view('laboratorios.index')
+            ->with('laboratorios', $laboratorios);
     }
 
-    /**
-     * Show the form for creating a new Servicio.
-     *
-     * @return Response
-     */
     public function create()
     {
-        return view('servicios.create');
+        return view('laboratorios.create');
     }
 
-    /**
-     * Store a newly created Servicio in storage.
-     *
-     * @param CreateServicioRequest $request
-     *
-     * @return Response
-     */
-    public function store(CreateServicioRequest $request)
+    public function store(CreateLaboratorioRequest $request)
     {
         $input = $request->all();
-        $servicio = $this->servicioRepository->create($input);
+        $laboratorio = $this->laboratorioRepository->create($input);
 
-        return redirect(route('servicios.index'))->with('ok', 'Servicio creado con éxito');
+        if(!$laboratorio)
+            return redirect()->back()->withErrors('Ocurrió un error. No se pudo guardar el laboratorio');
+
+        return redirect()->route('laboratorios.index')->with('ok', 'Laboratorio creado con éxito');
     }
 
-    /**
-     * Display the specified Servicio.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
-    public function show($id)
-    {
-        $servicio = $this->servicioRepository->findWithoutFail($id);
-
-        if (empty($servicio))
-            return redirect(route('servicios.index'))->withErrors('Servicio no encontrado');
-
-        return view('servicios.show')->with('servicio', $servicio);
-    }
-
-    /**
-     * Show the form for editing the specified Servicio.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function edit($id)
     {
-        $servicio = $this->servicioRepository->findWithoutFail($id);
+        $laboratorio = $this->laboratorioRepository->findWithoutFail($id);
 
-        if (empty($servicio))
-            return redirect(route('servicios.index'))->withErrors('Servicio no encontrado');
+        if (empty($laboratorio))
+            return redirect(route('laboratorios.index'))->withErrors('Laboratorio no encontrado');
 
-        return view('servicios.edit')->with('servicio', $servicio);
+        return view('laboratorios.edit')->with('laboratorio', $laboratorio);
     }
 
-    /**
-     * Update the specified Servicio in storage.
-     *
-     * @param  int              $id
-     * @param UpdateServicioRequest $request
-     *
-     * @return Response
-     */
-    public function update($id, UpdateServicioRequest $request)
+    public function update($id, UpdateLaboratorioRequest $request)
     {
-        $servicio = $this->servicioRepository->findWithoutFail($id);
+        $laboratorio = $this->laboratorioRepository->findWithoutFail($id);
 
-        if (empty($servicio))
-            return redirect(route('servicios.index'))->withErrors('Servicio no encontrado');
+        if (empty($laboratorio))
+            return redirect(route('laboratorios.index'))->withErrors('Laboratorio no encontrado');
 
-        $servicio = $this->servicioRepository->update($request->all(), $id);
+        $laboratorio = $this->laboratorioRepository->update($request->all(), $id);
 
-        return redirect(route('servicios.index'))->with('ok', 'Servicio actualizado con éxito');
+        if (empty($laboratorio))
+            return redirect(route('laboratorios.index'))->withErrors('No se pudo actualizar el laboratorio seleccionado');
+
+        return redirect(route('laboratorios.index'))->with('ok', 'Laboratorio actualizado con éxito');
     }
 
-    /**
-     * Remove the specified Servicio from storage.
-     *
-     * @param  int $id
-     *
-     * @return Response
-     */
     public function destroy($id)
     {
-        $servicio = $this->servicioRepository->findWithoutFail($id);
+        $laboratorio = $this->laboratorioRepository->findWithoutFail($id);
 
-        if (empty($servicio))
-            return redirect(route('servicios.index'))->withErrors('Servicio no encontrado');
+        if (empty($laboratorio))
+            return redirect(route('laboratorios.index'))->withErrors('Laboratorio no encontrado');
 
-        $this->servicioRepository->delete($id);
+        $this->laboratorioRepository->delete($id);
 
-        return redirect(route('servicios.index'))->with('ok', 'Servicio eliminado con éxito');
+        return redirect()->route('laboratorios.index')->with('ok', 'Laboratorio eliminado con éxito');
     }
 }
