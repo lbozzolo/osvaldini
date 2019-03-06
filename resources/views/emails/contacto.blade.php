@@ -1,13 +1,3 @@
-{{--<body>--}}
-
-    {{--<h2>Mail de contacto</h2>--}}
-    {{--<p>Nombre: {!! $data['name'] !!}</p>--}}
-    {{--<p>Origen: {!! $data['email'] !!}</p>--}}
-    {{--<p>Asunto: {!! $data['subject'] !!}</p>--}}
-    {{--<p>Contenido: {!! $data['textarea'] !!}</p>--}}
-
-{{--</body>--}}
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -274,7 +264,7 @@
                                                                                     <td valign="middle" style='vertical-align: middle;'>
                                                                                         <div class='contentEditableContainer contentTextEditable'>
                                                                                             <div class='contentEditable' style='text-align: left;font-weight: light; color:#555555;font-size:26;line-height: 39px;font-family: Helvetica Neue;'>
-                                                                                                <h1 class='big'>Farmacia Osvaldini</h1>
+                                                                                                <h1 class='big'>El Fortín Agropecuaria</h1>
                                                                                             </div>
                                                                                         </div>
                                                                                     </td>
@@ -316,9 +306,9 @@
                                                                                     <td>
                                                                                         <div class='contentEditableContainer contentTextEditable'>
                                                                                             <div class='contentEditable' style='text-align: center;'>
-                                                                                                <h2 style="font-size: 20px;">Contacto vía web de {!! $data['name_contact'] !!} {!! $data['lastname_contact'] !!}</h2>
+                                                                                                <h2 style="font-size: 20px;">Contacto vía web de {!! $data['nombre'] !!}</h2>
                                                                                                 <br>
-                                                                                                <p>{!! $data['message_contact'] !!}</p>
+                                                                                                <p>{!! $data['comentario'] !!}</p>
                                                                                             </div>
                                                                                         </div>
                                                                                     </td>
@@ -356,9 +346,8 @@
                                                                                         <div class='contentEditableContainer contentTextEditable'>
                                                                                             <div class='contentEditable' style='text-align: center;color:#AAAAAA;'>
                                                                                                 <p>
-                                                                                                    Enviado por {!! $data['name_contact'] !!} {!! $data['lastname_contact'] !!}<br/>
-                                                                                                    {!! $data['email_contact'] !!}<br/>
-                                                                                                    Teléfono: {!! $data['phone_contact'] !!} <br/>
+                                                                                                    Enviado por {!! $data['nombre'] !!}<br/>
+                                                                                                    {!! $data['email'] !!}<br/>
                                                                                                 </p>
                                                                                             </div>
                                                                                         </div>

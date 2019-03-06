@@ -5,37 +5,22 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\AppBaseController;
 use App\Http\Requests\ContactRequest;
 use App\Models\Categoria;
-use App\Models\Farmacia;
 use App\Models\Image;
+use App\Models\Nosotros;
 use App\Models\Producto;
-use App\Models\Servicio;
 use Illuminate\Http\Request;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\Facades\Mail;
 use App\Models\Slider;
-use Illuminate\Support\Facades\DB;
 
 class WebController extends AppBaseController
 {
-
     public function index()
     {
         $data['slider'] = Slider::where('active', '1')->first();
         $data['productos'] = Producto::where('highlight', 1)->get();
 
         return view('web.home')->with($data);
-    }
-
-    public function farmacia()
-    {
-        $data['nosotros'] = Farmacia::where('active', '==', 1)->first();
-        return view('web.farmacia')->with($data);
-    }
-
-    public function servicios()
-    {
-        $data['servicios'] = Servicio::where('active', '!=', null)->get();
-        return view('web.servicios')->with($data);
     }
 
     public function productos($categoriaId = null)
@@ -50,7 +35,8 @@ class WebController extends AppBaseController
 
     public function nosotros()
     {
-        $data['nosotros'] = Farmacia::where('active', 1)->first();
+        $data['nosotros'] = Nosotros::where('active', 1)->first();
+        $data['productos'] = Producto::where('highlight', 1)->get();
         //dd($data);
         return view('web.nosotros')->with($data);
     }
@@ -58,22 +44,24 @@ class WebController extends AppBaseController
     public function galeria()
     {
         $data['images'] = Image::where('imageable_id', null)->get();
+        $data['productos'] = Producto::where('highlight', 1)->get();
         return view('web.galeria')->with($data);
     }
 
     public function detalleProducto($id)
     {
-        $producto = Producto::find($id);
-        //dd($producto->mainImage());
+        $data['producto'] = Producto::find($id);
+        $data['productos'] = Producto::where('highlight', 1)->get();
 
-        if (empty($producto))
+        if (empty($data['producto']))
             return redirect()->back()->withErrors('Producto no encontrado');
 
-        return view('web.detalle-producto', compact('producto'));
+        return view('web.detalle-producto')->with($data);
     }
 
     public function contacto()
     {
+        $data['productos'] = Producto::where('highlight', 1)->get();
         return view('web.contacto');
     }
 
@@ -82,18 +70,16 @@ class WebController extends AppBaseController
         //dd($request->all());
 
         $data = array(
-            'name_contact' => $request->name_contact,
-            'lastname_contact' => $request->lastname_contact,
-            'phone_contact' => $request->phone_contact,
-            'email_contact' => $request->email_contact,
-            'message_contact' => $request->message_contact,
+            'nombre' => $request->nombre,
+            'email' => $request->email,
+            'comentario' => $request->comentario,
             'subject' => 'Contacto de cliente'
         );
 
         Mail::send('emails.contacto', ['data' => $data], function($message) use ($data){
             $message->to(config('mail.username'));
             $message->subject($data['subject']);
-            $message->from($data['email_contact']);
+            $message->from($data['email']);
         });
 
         return redirect()->back()->with('ok', 'Su correo se ha enviado con éxito.');

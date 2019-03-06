@@ -23,48 +23,68 @@
             <div class="box-product">
                 <div class="flexslider featured_carousel">
                     <ul class="slides">
-                        <li>
-                            <div class="slide-inner">
-                                <div class="image"><a href="agricultura.html"><img src="{{ asset('template-web/image/product/producto01.jpg') }}" alt="Insecticidas" /></a></div>
-                                <div class="name"><a href="agricultura.html">Agricultura</a></div>
-                                <div class="clear"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="slide-inner">
-                                <div class="image"><a href="horticultura.html"><img src="{{ asset('template-web/image/product/producto02.jpg') }}" alt="Herbicidas" /></a></div>
-                                <div class="name"><a href="horticultura.html">Horticultura</a></div>
-                                <div class="clear"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="slide-inner">
-                                <div class="image"><a href="polo.html"><img src="{{ asset('template-web/image/product/producto03.jpg') }}" alt="Fertilizantes" /></a></div>
-                                <div class="name"><a href="polo.html">Polo</a></div>
-                                <div class="clear"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="slide-inner">
-                                <div class="image"><a href="golf.html"><img src="{{ asset('template-web/image/product/producto04.jpg') }}" alt="Fungicidas" /></a></div>
-                                <div class="name"><a href="golf.html">Golf</a></div>
-                                <div class="clear"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="slide-inner">
-                                <div class="image"><a href="jardines.html"><img src="{{ asset('template-web/image/product/producto05.jpg') }}" alt="Semillas" /></a></div>
-                                <div class="name"><a href="jardines.html">Jardines y espacios verdes</a></div>
-                                <div class="clear"></div>
-                            </div>
-                        </li>
-                        <li>
-                            <div class="slide-inner">
-                                <div class="image"><a href="plagas.html"><img src="{{ asset('template-web/image/product/producto06.jpg') }}" alt="Maquinarias" /></a></div>
-                                <div class="name"><a href="plagas.html">Control de plaga</a></div>
-                                <div class="clear"></div>
-                            </div>
-                        </li>
+                        @forelse($productos as $producto)
+
+                            <li>
+                                <div class="slide-inner">
+                                    <div class="image">
+                                        @if($producto->mainImage())
+                                            <a href="l">
+                                                <img src="{{ route('imagenes.ver', $producto->mainImage()->path) }}" class="img-responsive" style="margin: 0px auto">
+                                            </a>
+                                        @endif
+                                    </div>
+                                    <div class="name">
+                                        <a href="">{!! $producto->name !!}</a>
+                                    </div>
+                                    <div class="clear"></div>
+                                </div>
+                            </li>
+
+                        @empty
+                        @endforelse
+                        {{--<li>--}}
+                            {{--<div class="slide-inner">--}}
+                                {{--<div class="image"><a href="agricultura.html"><img src="{{ asset('template-web/image/product/producto01.jpg') }}" alt="Insecticidas" /></a></div>--}}
+                                {{--<div class="name"><a href="agricultura.html">Agricultura</a></div>--}}
+                                {{--<div class="clear"></div>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<div class="slide-inner">--}}
+                                {{--<div class="image"><a href="horticultura.html"><img src="{{ asset('template-web/image/product/producto02.jpg') }}" alt="Herbicidas" /></a></div>--}}
+                                {{--<div class="name"><a href="horticultura.html">Horticultura</a></div>--}}
+                                {{--<div class="clear"></div>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<div class="slide-inner">--}}
+                                {{--<div class="image"><a href="polo.html"><img src="{{ asset('template-web/image/product/producto03.jpg') }}" alt="Fertilizantes" /></a></div>--}}
+                                {{--<div class="name"><a href="polo.html">Polo</a></div>--}}
+                                {{--<div class="clear"></div>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<div class="slide-inner">--}}
+                                {{--<div class="image"><a href="golf.html"><img src="{{ asset('template-web/image/product/producto04.jpg') }}" alt="Fungicidas" /></a></div>--}}
+                                {{--<div class="name"><a href="golf.html">Golf</a></div>--}}
+                                {{--<div class="clear"></div>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<div class="slide-inner">--}}
+                                {{--<div class="image"><a href="jardines.html"><img src="{{ asset('template-web/image/product/producto05.jpg') }}" alt="Semillas" /></a></div>--}}
+                                {{--<div class="name"><a href="jardines.html">Jardines y espacios verdes</a></div>--}}
+                                {{--<div class="clear"></div>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
+                        {{--<li>--}}
+                            {{--<div class="slide-inner">--}}
+                                {{--<div class="image"><a href="plagas.html"><img src="{{ asset('template-web/image/product/producto06.jpg') }}" alt="Maquinarias" /></a></div>--}}
+                                {{--<div class="name"><a href="plagas.html">Control de plaga</a></div>--}}
+                                {{--<div class="clear"></div>--}}
+                            {{--</div>--}}
+                        {{--</li>--}}
 
                     </ul>
                 </div>

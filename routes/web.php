@@ -29,16 +29,6 @@ Route::group(['prefix' => 'web'], function () {
         'uses' => 'WebController@index'
     ]);
 
-    Route::get('farmacia', [
-        'as' => 'web.farmacia',
-        'uses' => 'WebController@farmacia'
-    ]);
-
-    Route::get('servicios', [
-        'as' => 'web.servicios',
-        'uses' => 'WebController@servicios'
-    ]);
-
     Route::get('nosotros', [
         'as' => 'web.nosotros',
         'uses' => 'WebController@nosotros'

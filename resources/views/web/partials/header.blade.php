@@ -6,21 +6,27 @@
 
 <nav id="menu">
     <ul>
-        <li><a href="index.html">Home</a></li>
-        <li class="categories_hor"><a href="nosotros.html">Nosotros</a></li>
+        <li><a href="{{ route('home') }}">Home</a></li>
+        <li class="categories_hor"><a href="{{ route('web.nosotros') }}">Nosotros</a></li>
         <li><a href="#">Productos</a>
             <div>
+                @if(isset($productos))
                 <ul>
-                    <li><a href="agricultura.html">Agricultura</a></li>
-                    <li><a href="horticultura.html">Horticultura</a></li>
-                    <li><a href="polo.html">Polo</a></li>
-                    <li><a href="golf.html">Golf</a></li>
-                    <li><a href="jardines.html">Jardines y espacios verdes</a></li>
-                    <li><a href="plagas.html">Control de Plagas</a></li>
+                    @forelse($productos as $producto)
+                        <li><a href="{{ route('web.producto.detalle', $producto->id) }}">{!! $producto->name !!}</a></li>
+                    @empty
+                    @endforelse
+                    {{--<li><a href="{{ route('web.nosotros') }}">Agricultura</a></li>--}}
+                    {{--<li><a href="horticultura.html">Horticultura</a></li>--}}
+                    {{--<li><a href="polo.html">Polo</a></li>--}}
+                    {{--<li><a href="golf.html">Golf</a></li>--}}
+                    {{--<li><a href="jardines.html">Jardines y espacios verdes</a></li>--}}
+                    {{--<li><a href="plagas.html">Control de Plagas</a></li>--}}
                 </ul>
+                @endif
             </div>
         </li>
-        <li><a href="contacto.html">Contactanos</a></li>
+        <li><a href="{{ route('web.contacto') }}">Contactanos</a></li>
         <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
         <li><a href="#">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a></li>
         <li><a href="mailto:ventas@fortinagropecuaria.com.ar">ventas@fortinagropecuaria.com.ar</a></li>
