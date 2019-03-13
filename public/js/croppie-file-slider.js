@@ -67,9 +67,7 @@ $(document).ready(function() {
 
         $("#upload").on("click", function() {
             croppie.result('base64').then(function(base64) {
-                $("#myModal").modal("hide");
 
-                $("#profile-pic").attr("src","/images/ajax-loader.gif");
 
                 var url = $('#producto-id').attr('data-producto-id');
 

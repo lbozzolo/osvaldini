@@ -45,7 +45,7 @@ class Producto extends Model
     public static $rules = [
         'name' => 'required|max:255',
         'description' => 'max:1500',
-        'code' => 'required',
+        'code' => '',
         'price' => '',
         'categorias' => 'min:1',
     ];
