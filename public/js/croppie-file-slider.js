@@ -94,17 +94,9 @@ $(document).ready(function() {
                     contentType: false,
                     success: function(data) {
                         if (data === "uploaded") {
-                            //$("#profile-pic").attr("src", base64);
-                            //$("#accept-image").show();
-                            //$("#file-upload").hide();
                             location.reload();
                         } else {
                             location.reload();
-                            // $("#profile-pic").attr("src", base64);
-                            //$("#croppie-image").hide();
-                            //$("#form-fields").show();
-                            //$("#list-images").show();
-                            //$("#accept-image").show();
                         }
                     },
                     error: function(error) {

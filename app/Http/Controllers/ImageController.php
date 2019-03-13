@@ -246,12 +246,11 @@ class ImageController extends AppBaseController
     public function saveJqueryImageUpload(Request $request, $id, $class)
     {
         $validator = Validator::make($request->all(), [
-            'img' => 'required|image|max:5120000',
+            'img' => 'required|image|max:'.config('sistema.imagenes.MAX_SIZE_IMAGE'),
         ]);
 
-        if ($validator->fails()) {
+        if ($validator->fails())
             return $validator->errors();
-        }
 
         $status = "";
 
@@ -262,7 +261,7 @@ class ImageController extends AppBaseController
         $model = $class::find($id);
 
         // Redirección si supera el máximo de fotos permitido
-        if($model->images->count() >= config('imagenes.MAX_NUMBER_IMAGES'))
+        if($model->images->count() >= config('sistema.imagenes.MAX_NUMBER_IMAGES'))
             return redirect()->back()->withErrors('El número máximo de fotos permitido es '.config('sistema.imagenes.MAX_NUMBER_IMAGES').'. Elimine una foto y vuelva a intentarlo');
 
         if($request->file('img')){
