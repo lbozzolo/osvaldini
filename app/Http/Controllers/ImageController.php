@@ -246,7 +246,7 @@ class ImageController extends AppBaseController
     public function saveJqueryImageUpload(Request $request, $id, $class)
     {
         $validator = Validator::make($request->all(), [
-            'img' => 'required|image|max:1024000',
+            'img' => 'required|image|max:5120000',
         ]);
 
         if ($validator->fails()) {
