@@ -13,11 +13,11 @@
                <div class="row">
                    <div class="col-lg-12" id="form-fields">
                        <div class="row">
-                   {!! Form::model($slider, ['route' => ['sliders.update', $slider->id], 'method' => 'patch']) !!}
+                       {!! Form::model($slider, ['route' => ['sliders.update', $slider->id], 'method' => 'patch']) !!}
 
-                        @include('sliders.fields')
+                            @include('sliders.fields')
 
-                   {!! Form::close() !!}
+                       {!! Form::close() !!}
                        </div>
                    </div>
                    <div class="col-lg-12">

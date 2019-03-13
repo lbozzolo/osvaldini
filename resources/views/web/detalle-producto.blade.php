@@ -20,28 +20,36 @@
                                     </figure>
                                 </div>
                                 <div class="info-column col-md-6 col-sm-6 col-xs-12">
+                                    @if($producto->name)
                                     <div class="details-header">
                                         <h2>{!! $producto->name !!}</h2>
                                     </div>
+                                    @endif
+                                    @if($producto->description)
                                     <div class="text">
                                         <p>{!! $producto->description !!}</p>
                                     </div>
+                                    @endif
+                                    @if($producto->categorias->count())
                                     <div class="text">
-                                        @if($producto->categorias->count())
-                                            <span>Categorías:</span>
-                                            <ul class="item-meta">
-                                                @foreach($producto->categorias as $categoria)
-                                                    <li>{!! $categoria->name !!}</li>
-                                                @endforeach
-                                            </ul>
-                                        @endif
+                                        <span>Categorías:</span>
+                                        <ul class="item-meta">
+                                            @foreach($producto->categorias as $categoria)
+                                                <li>{!! $categoria->name !!}</li>
+                                            @endforeach
+                                        </ul>
                                     </div>
+                                    @endif
+                                    @if($producto->code)
                                     <div class="text">
                                         <p>Código: {!! $producto->code !!}</p>
                                     </div>
+                                    @endif
+                                    @if($producto->price)
                                     <div class="text">
                                         <p>Precio: ${!! $producto->price !!}</p>
                                     </div>
+                                    @endif
                                 </div>
                             </div>
                         </div><!--End Basic Details-->
